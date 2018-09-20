@@ -1,0 +1,9 @@
+[PROJECT1_20181]
+	Báo cáo tuần 1 
+	Đề tài : Xác định lưu lượng phương tiện,phân luồng giao thông
+	Sử dụng openCV +Python
+	Các việc đã làm được
+	-Tìm hiểu về cơ bản OpenCV
+	-Đã xử lí cơ bản với ảnh : đọc,lưu,vẽ hình cơ bản,..
+	-Xử lý để nhận luồng từ camera (webcam)
+	-Tách thành frame ảnh để chuyển thành nhận dạng ảnh

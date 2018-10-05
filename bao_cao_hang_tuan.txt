@@ -7,3 +7,11 @@
 	-Đã xử lí cơ bản với ảnh : đọc,lưu,vẽ hình cơ bản,..
 	-Xử lý để nhận luồng từ camera (webcam)
 	-Tách thành frame ảnh để chuyển thành nhận dạng ảnh
+----------------------------------
+	**Báo cáo tuần 2
+
+	-Capture từ một đoạn video có sẵn
+	-Tìm hiểu 1 số framework,và các project có sẵn về nhận dạng vật thể
+	và ap dụng vào project
+	-Thiết kế giao diện cho ưng dụng (GUI) sửa dụng thư viện PyQt5 và dùng IDE QtDesign :hiện e đag tìm cách converter file.ui -> 		file.py,nên thầy xem tạm cái ảnh e cáp màn hình ạ
+	

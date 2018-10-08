@@ -15,6 +15,7 @@ class GUI(QMainWindow):
     soframe=0
     clickStart =0;
     videoname=0
+    # khởi tạo cái giá trị ban đầu
     def __init__(self):
         super(GUI, self).__init__()
         loadUi('GUI_pr1.ui', self)
@@ -27,12 +28,13 @@ class GUI(QMainWindow):
 
 
     @pyqtSlot()
+    #hàm xử lí các sự kiện
     def loadClick(self):
         fname, _ = QFileDialog.getOpenFileName(self, 'Choose File', 'C:\\', "AllVideo (*)")
         if fname:
-            self.tenNguon(fname)
-            self.tenVideo(str(fname))
-            self.videoname=''
+            self.tenNguon(fname) # set path tới videe
+            self.tenVideo(str(fname)) # lấy tên video.nếu dùng camera trà về là camera
+            self.videoname=fname
             self.lbVideoGoc.setText('Press the "Start" button to start!')
             # if self.clickStart > 0:
             #     print(self.clickStart)
@@ -40,6 +42,7 @@ class GUI(QMainWindow):
             # else:
             #     self.clickedStart()
 
+    #loadVideo
     def loadVideo(self):
         self.soframe = 0
         fname =self.videoname
@@ -54,7 +57,7 @@ class GUI(QMainWindow):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame)
         self.timer.start(15)
-
+    #chia video thành cá frame
     def update_frame(self):
         res,self.image=self.capture.read()
         self.soframe+=1
@@ -64,9 +67,11 @@ class GUI(QMainWindow):
         detectObj = self.detectObject(self.image)
         self.displayImage(detectObj,2)
 
+    #đếm số frame
     def updateSoFrame(self):
         self.soFrame.setText(str(self.soframe))
 
+    #hàm nhận dạng
     def detectObject(self,img):
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # detect cars in the video
@@ -76,7 +81,7 @@ class GUI(QMainWindow):
 
         return img
 
-
+    #hieetn thị video: video gốc ở lbVideoGoc,Video sau nhận dạng ở lbVideoSau
     def displayImage(self,image2,window):
         qformat = QImage.Format_Indexed8
         if len(image2.shape) == 3:
@@ -93,16 +98,18 @@ class GUI(QMainWindow):
         # self.lbVideoGoc.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
         self.lbVideoGoc.setScaledContents(True)
         self.lbVideoSau.setScaledContents(True)
-
+    #ten path dan den video
     def tenNguon(self,fname):
         self.lineEditLinkVd.setText(fname)
-    #
+
+    #ten video
     def tenVideo(self,fname):
         if fname=='0':
             self.nameVd.setText('Camera')
         if fname.rfind('/') > -1:
             self.nameVd.setText(fname[fname.rfind('/') + 1:len(fname)])
 
+    #thoat
     def finishConnect(self):
         exit(app.exec_())
 
